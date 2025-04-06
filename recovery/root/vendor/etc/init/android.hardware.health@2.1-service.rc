@@ -1,0 +1,10 @@
+service health-hal-2-1 /vendor/bin/hw/android.hardware.health@2.1-service
+    class hal charger
+    user system
+    group system
+    capabilities WAKE_ALARM BLOCK_SUSPEND
+    file /dev/kmsg w
+
+# adsp charger use "sysfs qcom-battery/lcd_status" to get lcd status 
+on property:sys.boot_completed=1
+    chown system system sys/class/qcom-battery/lcd_status
